@@ -13,11 +13,23 @@ export class UsersService {
     return createdUser.save();
   }
 
-  async findOneByEmail(email: string): Promise<User | undefined> {
-    return this.userModel.findOne({ email }).exec();
-  }
-
   async findAll(): Promise<User[]> {
     return this.userModel.find().exec();
+  }
+
+  async findOne(id: string): Promise<User> {
+    return this.userModel.findById(id).exec();
+  }
+
+  async update(id: string, createUserDto: CreateUserDto): Promise<User> {
+    return this.userModel.findByIdAndUpdate(id, createUserDto, { new: true });
+  }
+
+  async remove(id: string): Promise<void> {
+    await this.userModel.findByIdAndDelete(id);
+  }
+
+  async findOneByEmail(email: string): Promise<User | undefined> {
+    return this.userModel.findOne({ email }).exec();
   }
 }
