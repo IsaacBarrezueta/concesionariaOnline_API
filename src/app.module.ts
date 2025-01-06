@@ -1,30 +1,20 @@
-import { MailController } from './Correos/mail.controller';
-import { MailService } from './Correos/mail.service';
+import { AuthModule } from './auth/auth.module';
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { CarroController } from './Carro/carro.controller';
-import { CategoriaController } from './Categoria/categoria.controller';
-import { CategoriaModule } from './Categoria/categoria.module';
-import { UsuarioController } from './Usuario/usuario.controller';
-import { UsuarioModule } from './Usuario/usuario.module';
-import { Usuario, UsuarioSchema } from './Usuario/usuario.schema';
-import { UsuariosService } from './Usuario/usuario.service';
+import { AccessoriesModule } from './accessories/accessories.module';
+import { CarsModule } from './cars/cars.module'; // Asegúrate de tener el módulo de cars
+import { ReplacementsModule } from './replacements/replacements.module'; // Módulo de repuestos
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
-    CategoriaModule,
-    UsuarioModule,
-    ConfigModule.forRoot(),
+    AuthModule,
+    AccessoriesModule,
     MongooseModule.forRoot(process.env.MONGODB_URI),
-    MongooseModule.forFeature([{ name: Usuario.name, schema: UsuarioSchema }]),
+    UsersModule,
+    CarsModule,
+    AccessoriesModule,
+    ReplacementsModule,
   ],
-  controllers: [
-    MailController,
-    CarroController,
-    CategoriaController,
-    UsuarioController,
-  ],
-  providers: [MailService, UsuariosService],
 })
 export class AppModule {}
