@@ -18,6 +18,7 @@ dotenv.config(); // Asegúrate de que dotenv está configurado correctamente
     CarsModule,
     AccessoriesModule,
     ReplacementsModule,
+    CarsModule,
   ],
 })
 export class AppModule {}
