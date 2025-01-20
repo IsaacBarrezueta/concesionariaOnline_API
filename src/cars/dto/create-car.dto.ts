@@ -1,6 +1,6 @@
 export class CreateCarDto {
   readonly brand: string;
-  readonly car_model: string; // Cambiado de 'model' a 'car_model'
+  readonly car_model: string;
   readonly year: number;
   readonly type: string;
   readonly price: number;

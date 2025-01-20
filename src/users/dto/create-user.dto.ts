@@ -6,7 +6,7 @@ export class CreateUserDto {
   readonly email: string;
 
   @IsString()
-  readonly password_hash: string; // La contraseña ya debe estar hasheada
+  readonly password: string;
 
   @IsEnum(Role)
   readonly role: Role;
